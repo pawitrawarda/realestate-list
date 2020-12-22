@@ -1,0 +1,235 @@
+@import 'grid';
+@import 'modal';
+
+@font-face {
+  font-family: avenirNext;
+  src: url(../font/AvenirNext-Regular.woff);
+}
+
+@font-face {
+  font-family: avenirNext;
+  src: url(../font/AvenirNext-Bold.woff);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: avenirNext;
+  src: url(../font/AvenirNext-DemiBold.woff);
+  font-weight: 600;
+}
+
+body {
+  font-size: 1rem;
+  margin: 0 auto;
+  background-repeat: no-repeat, repeat;
+  background-size: 90%, cover;
+  background-position: bottom left, center;
+  background-image: url(../bg.png), linear-gradient(260.31deg, #5A50DB 0%, #7344D3 80%);
+  font-family: avenirNext;
+}
+
+.home {
+  padding: 2rem;
+  height: 100vh;
+}
+
+.header {
+  .title-2 {
+    text-align: right;
+  }
+}
+
+.main-content {
+  padding-top: 5rem;
+  .content-left {
+    padding-top: 2rem;
+    color: #fff;
+    h1 {
+      font-size: 3.25rem;
+    }
+  }
+
+  .content-right {
+    position: relative;
+    .arrow-left, .arrow-right {
+      display: inline-block;
+      position: absolute;
+      margin: 0;
+      top: 50%;
+      -ms-transform: translateY(-50%);
+      transform: translateY(-50%);
+      cursor: pointer;
+      img {
+        height: 16px;
+        width: 16px;
+        padding: 0.5rem;
+        background-color: #fff;
+        border-radius: 50%;
+      }
+    }
+
+    .arrow-right {
+      right: 0;
+    }
+  }
+}
+
+.card {
+  background-color: #fff;
+  border-radius: .5rem;
+  margin-left: 48px;
+  margin-right: 48px;
+  padding-bottom: .25rem;
+  .image-card {
+    padding: 0.625rem;
+    img {
+      border-top-left-radius: .5rem;
+      border-top-right-radius: .5rem;
+    }
+  }
+
+  .map-card {
+    margin: 0.625rem;
+    height: 285.73px;
+    border-top-left-radius: .5rem;
+    border-top-right-radius: .5rem;
+    background-image: url(../map.png);
+    position: relative;
+    img {
+      position: absolute;
+      height: 28px;
+      width: 28px;
+      top: 30%;
+      left: 50%;
+    }
+  }
+
+  .status-card {
+    .status, .status-2 {
+      font-size: 12px;
+      margin-right: .5rem;
+      padding: .25rem .625rem;
+    }
+
+    .status {
+      border-radius: 3px;
+      margin-left: .625rem;
+      background-color: #EAEEF2;
+    }
+
+    .status-2 {
+      color: #fff;
+      border-radius: 50px;
+      background-color: #6AB683;
+    }
+  }
+
+  .price-card {
+    margin-top: .625rem;
+    margin-left: .625rem;
+    margin-right: .625rem;
+    .price-1 {
+      font-weight: bold;
+    }
+
+    .price-2 {
+      font-size: 12px;
+      margin-left: .25rem;
+    }
+  }
+
+  .desc-card {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: .625rem;
+    margin-bottom: .625rem;
+    .list-desc {
+      margin-left: .625rem;
+      line-height: 16px;
+    }
+  }
+
+  .desc-info {
+    margin-left: .625rem;
+    &__title {
+      font-weight: 600;
+      margin-top: 10px;
+      margin-bottom: 5px;
+    }
+
+    &__loc {
+      font-size: 14px;
+      margin-top: 0;
+    }
+  }
+
+  .action {
+    margin-left: .625rem;
+    margin-right: .625rem;
+    margin-bottom: .625rem;
+  }
+}
+
+.img-responsive {
+  width: 100%;
+  height: auto;
+}
+
+.like-icon {
+  display: inline-block;
+  float: right;
+  margin-right: .625rem;
+  img {
+    height: 16px;
+    width: 16px;
+  }
+}
+
+.icon-image {
+  height: 12px;
+  width: 12px;
+}
+
+.button-block {
+  display: block;
+  position: relative;
+  width: 100%;
+  text-decoration: none;
+  border: none;
+  background-color: #6AB683;
+  color: #fff;
+  padding: 0.75rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+$directions: (top, bottom, left, right);
+@each $direction in $directions {
+  .m-#{$direction}-0{
+    margin-#{$direction}: 0 !important;
+  }
+}
+
+.modal__body {
+  .card{
+    .price-card {
+      .price-1 {
+        font-size: 18px;
+      }
+
+      .price-2 {
+        font-size: 16px;
+      }
+    }
+    .desc-card {
+      font-size: 16px;
+      .list-desc {
+        .icon-image {
+          height: 16px;
+          width: 16px;
+        }
+      }
+    }
+  }
+}

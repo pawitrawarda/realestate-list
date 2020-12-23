@@ -85,7 +85,26 @@
       <template v-slot:body>
         <div class="card m-left-0 m-right-0">
           <div class="map-card">
-            <img src="../assets/icon/marker.svg" class="img-responsive" alt="marker" />
+            <Gmap-Map
+              ref="map"
+              class="gmap"
+              :zoom="mapOpt.zoom"
+              :center="{ lat: curLat, lng: curLon }"
+              style="height: 100%; width: 100%;"
+              @idle="zoomUpdate"
+              @center_changed="centerUpdate"
+            >
+              <GmapMarker
+                :key="index"
+                v-for="(m, index) in markers"
+                :position="m.position"
+                :clickable="true"
+                :draggable="true"
+                @click="center=m.position"
+                :icon="{ url: require('../assets/icon/marker.svg')}"
+              />
+            </Gmap-Map>
+            <!--            <img src="../assets/icon/marker.svg" class="img-responsive" alt="marker" />-->
           </div>
           <div class="desc-info">
             <h3 class="desc-info__title">Jl.Sukajadi No. 1 Bandung, Jawa Barat</h3>
@@ -105,13 +124,53 @@ import Modal from '../components/Modal'
 
 export default {
   name: 'Home',
+  data () {
+    return {
+      curLat: -6.9032728,
+      curLon: 107.618787,
+      mapOpt: {
+        zoom: 10,
+        currentZoom: 13
+      },
+      markers: [{
+        position: {
+          lat: -6.9032728,
+          lng: 107.618787
+        }
+      }]
+    }
+  },
   components: {
     Modal
+  },
+  created () {
+    // this.getCurrentLocation()
   },
   methods: {
     onClickLihatPeta () {
       this.$refs.modalMap.openModal()
       this.$refs.modalDetail.closeModal()
+    },
+    getCurrentLocation () {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            this.curLat = Number(position.coords.latitude)
+            this.curLon = Number(position.coords.longitude)
+            console.log(this.curLat)
+          },
+          () => {
+            console.log('Unable to retrieve your location')
+          }
+        )
+      }
+    },
+    zoomUpdate (zoom) {
+      this.mapOpt.currentZoom = zoom
+    },
+    centerUpdate (center) {
+      this.curLat = center.lat
+      this.curLon = center.lng
     }
   }
 }
